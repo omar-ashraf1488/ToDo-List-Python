@@ -1,44 +1,43 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
 
-class title_elements():
-    def __init__(self):
+#from window_GUI import main_window
+
+# Import threading to avoid crashing the app
+import cgitb
+cgitb.enable(format='text')
+
+
+class TaskElements(QMainWindow):
+    def __init__(self, description, height, width, task_id=None, removeTask=None):
+        self.description = description
+        self.removeTask = removeTask
+        self.task_id = task_id
+        self.height = height
+        self.width = width
         super().__init__()
 
-        # Title
-        self.title = QLabel('To Do List')
-        # Set the orientation of widgets
-        self.title.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
-        # Change the default font
-        self.title.setFont(QFont("Arial"))
-
-        # Label Title
-        self.labelTitle = QLineEdit()
-        self.labelTitle.setPlaceholderText("Title")
-
-        self.buttonTitle = QPushButton("Add Title")
-
-
-
-class task_elements(QMainWindow):
-    def __init__(self):
-        super().__init__()
 
         # Line edit for task
         self.labelTask = QLineEdit()
         self.checkBoxTask = QCheckBox()
         self.deleteTaskButton = QPushButton("X")
+        self.deleteTaskButton.setFixedSize(int(self.width / 20), int(self.height / 25))
 
-        self.add_task_layout = QHBoxLayout()
-        self.add_task_layout.addWidget(self.checkBoxTask)  # , alignment=Qt.AlignLeft | Qt.AlignTop)
-        self.add_task_layout.addWidget(self.labelTask)  # , alignment=Qt.AlignLeft | Qt.AlignTop)
-        self.add_task_layout.addWidget(self.deleteTaskButton)
 
-        #self.checkBoxTask.stateChanged.connect(self.deleteLater)
-        #self.deleteTaskButton.clicked.connect(self.deleteLater)
-        self.deleteTaskButton.clicked.connect(self.fun1)
+        self.taskLayout = QHBoxLayout()
+        self.taskLayout.addWidget(self.labelTask)
+        self.taskLayout.addWidget(self.deleteTaskButton)
 
-    def fun1(self):
-        self.deleteTaskButton.clicked.connect(self.add_task_layout.deleteLater)
-        print('delete')
+        self.labelTask.setText(self.description)
+
+
+        # Action of Delete Button
+        self.deleteTaskButton.clicked.connect(self.delete_task)
+
+
+    # Delete task function
+    def delete_task(self):
+        print("delete")
+        self.removeTask(self.task_id)
+        #main_window.index_list.pop().deletlater()
+        # MainWindow().index_list.pop.deletelater()
