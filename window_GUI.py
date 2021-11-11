@@ -47,14 +47,13 @@ class main_window(QMainWindow):
         self.tasksLayout = QFormLayout()
 
         for entry in self.tasksIdDescriptionList:
-            self.tasks_object_list.append(
-                (entry[0], TaskElements(entry[1], self.height, self.width, entry[0], self.removeTask)))
+            self.tasks_object_list.append((entry[0],
+                                           TaskElements(entry[1], self.height, self.width, entry[0], self.removeTask)))
 
         for entry in self.tasks_object_list:
-            self.tasksLayout.addRow(entry[1].taskLayout)
-            layoutObject = self.tasksLayout.children()[self.tasksLayout.count() - 1]
+            self.tasksLayout.addRow(entry[1])  #
+            layoutObject = self.tasksLayout  # .children()[self.tasksLayout.count() - 1]
             self.tasks_layout_items.append((entry[0], layoutObject))  # entry[0] is taskID
-            print(self.tasks_layout_items)
 
         self.tasksWidget = QWidget()
         self.tasksWidget.setLayout(self.tasksLayout)
@@ -83,8 +82,7 @@ class main_window(QMainWindow):
     def removeTask(self, task_id):
         for layout_item in self.tasks_layout_items:
             if layout_item[0] == task_id:
-                print("here")
-                self.tasksLayout.removeWidget(layout_item[1])  # layout_item[1] is the layoutObject
+                self.tasksLayout.removeRow(layout_item[1])  # layout_item[1] is the layoutObject
                 self.dbController.delete_task_by_id(task_id)
 
     def addTask(self):
@@ -94,10 +92,9 @@ class main_window(QMainWindow):
             self.get_tasks_list()
             self.lineEditAddTask.clear()
 
-            task = TaskElements(text, self.height, self.width)
-            self.tasksLayout.addRow(task.taskLayout)
-            layoutObject = self.tasksLayout.children()[-1]
-            print(layoutObject)
+            task = TaskElements(text, self.height, self.width, self.tasksLayout.count() + 1, self.removeTask)
+            self.tasksLayout.addRow(task)  # task.taskLayout
+            layoutObject = self.tasksLayout  # .children()[-1]
             self.tasks_layout_items.append((self.tasksLayout.count(), layoutObject))
         else:
             QMessageBox.warning(self, "Warning!", "You must enter a task.")
