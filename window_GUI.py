@@ -1,3 +1,4 @@
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 import sys
 import os
@@ -9,18 +10,20 @@ from db.create_db import create_db
 from db.db_controller import DbController
 
 
+
 class main_window(QMainWindow):
     def __init__(self, width, height):
         super().__init__()
         self.width = width
         self.height = height
         self.dbController = DbController("to_do.db")
-        # self.controller.db_name = "to_do.db"
         self.tasksIdDescriptionList = []
         self.tasks_object_list = []
         self.tasks_layout_items = []
 
+        self.setWindowIcon(QIcon('Images/logo.png'))
         self.setWindowTitle("To do List")
+        self.setFixedSize(self.width, self.height)
         self.setGeometry(100, 100, self.width, self.height)
 
         self.titleElementsObject = TitleElements(self.height)
@@ -103,14 +106,15 @@ class main_window(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    main = main_window(500, 800)
-    main.show()
-
     if not os.path.exists("to_do.db"):
         create_db("to_do.db")
         new_db = QMessageBox()
         new_db.setWindowTitle("New Database")
         new_db.setText("New database created")
         new_db.exec_()
+
+
+    main = main_window(500, 800)
+    main.show()
 
     sys.exit(app.exec())
