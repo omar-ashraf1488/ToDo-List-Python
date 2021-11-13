@@ -21,7 +21,7 @@ class main_window(QMainWindow):
         self.tasks_layout_items = []
 
         self.setWindowTitle("To do List")
-        self.setGeometry(0, 0, self.width, self.height)
+        self.setGeometry(100, 100, self.width, self.height)
 
         self.titleElementsObject = TitleElements(self.height)
 
@@ -30,13 +30,13 @@ class main_window(QMainWindow):
 
         self.buttonAddTask.clicked.connect(self.addTask)
 
-        self.initUI(self.width, self.height)  # Initialize the UI
+        self.initUI()  # Initialize the UI
 
     def get_tasks_list(self):
         for entry in self.dbController.get_all_tasks():
             self.tasksIdDescriptionList.append(entry)
 
-    def initUI(self, width, height):
+    def initUI(self):
         self.get_tasks_list()
 
         # Horizontal box layout objects
@@ -98,13 +98,6 @@ class main_window(QMainWindow):
             self.tasks_layout_items.append((self.tasksLayout.count(), layoutObject))
         else:
             QMessageBox.warning(self, "Warning!", "You must enter a task.")
-
-    # Actions of checkbox functions
-    def checkBoxtaskChecked(self, checkBox, lineEdit):
-        if checkBox.isChecked():
-            lineEdit.setDisabled(True)
-        else:
-            lineEdit.setDisabled(False)
 
 
 if __name__ == "__main__":

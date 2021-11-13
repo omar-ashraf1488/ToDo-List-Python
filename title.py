@@ -35,5 +35,8 @@ class TitleElements(QWidget):
         self.buttonTitle.clicked.connect(self.addTitle)
 
     def addTitle(self):
-        print("add title")
-        self.buttonTitle.setText("Change the Title")
+        if self.buttonTitle.text() == "Change the Title":
+            self.buttonTitle.setText("Add Title")
+        elif self.buttonTitle.text() == "Add Title":
+            self.buttonTitle.setText("Change the Title")
+
