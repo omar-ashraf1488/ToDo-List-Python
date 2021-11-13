@@ -2,6 +2,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
+from db.create_db import create_db
+
 
 class TitleElements(QWidget):
     def __init__(self, height):
@@ -35,8 +37,23 @@ class TitleElements(QWidget):
         self.buttonTitle.clicked.connect(self.addTitle)
 
     def addTitle(self):
-        if self.buttonTitle.text() == "Change the Title":
-            self.buttonTitle.setText("Add Title")
-        elif self.buttonTitle.text() == "Add Title":
-            self.buttonTitle.setText("Change the Title")
+        text = self.labelTitle.text()
+        if text != "":
+            if self.buttonTitle.text() == "Change the Title":
+                self.buttonTitle.setText("Add Title")
+                self.labelTitle.setReadOnly(False)
+                self.labelTitle.setAlignment(Qt.AlignLeft)
+
+            elif self.buttonTitle.text() == "Add Title":
+                self.buttonTitle.setText("Change the Title")
+                self.labelTitle.setReadOnly(True)
+                self.labelTitle.setAlignment(Qt.AlignCenter)
+        else:
+            QMessageBox.warning(self, "Warning!", "You must enter a title.")
+
+
+
+
+
+
 
