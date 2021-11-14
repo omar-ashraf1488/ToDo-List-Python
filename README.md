@@ -31,7 +31,7 @@ This project is a GUI application for To-Do List and It is connected to Database
 - [x] Delete a task
 - [x] Connect GUI with database
 - [x] Connect Push buttons (Add Task) and (Add Title) with Enter Key
-- [ ] Connect (Add Title) Pushbutton with database to change the name of the table after pressing the button.
+- [ ] Connect Push button (Add Title)  with database to change the name of the table after pressing the button.
 - [ ] Style and beautify the application
 ## <a name="license_"></a>License
 
