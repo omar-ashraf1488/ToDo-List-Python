@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="100" <img src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/64/000000/external-plan-sport-coaching-inipagistudio-mixed-inipagistudio.png"/>
+  <img width="80" <img src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/64/000000/external-plan-sport-coaching-inipagistudio-mixed-inipagistudio.png"/>
   <h1 align="center">To-Do List Application</h1>
 </p>
 
