@@ -16,7 +16,12 @@
 </details>
 
 ## <a name="about_the_project"></a>About The Project
+This project is a GUI application for To-Do List and It is connected to Database. The main aim of the project is learning Python, PyQT5 and SQLite3.
 ### <a name="built_with"></a>Built With
+* Python 3
+* PyQT5
+* SQLite3
+* IDE: Pycharm
 ## <a name="getting_started"></a>Getting Started
 ### <a name="prerequisites_"></a>Prerequisites
 ### <a name="installation_"></a>Installation
