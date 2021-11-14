@@ -10,4 +10,15 @@ GUI-Application "To do List" using Python and PyQT connects to Database SQLite3.
      * Prerequisites
      * Installation
   3. Roadmap
+  4. License
 </details>
+
+## About The Project
+### Built With
+## Getting Started
+### Prerequisites
+### Installation
+## Roadmap
+## License
+
+
