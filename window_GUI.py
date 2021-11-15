@@ -1,14 +1,15 @@
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 import sys
 import os
 
 from task import TaskElements
-from title import TitleElements
+
 
 from db.create_db import create_db
 from db.db_controller import DbController
-
+from title import TitleElements
 
 
 class main_window(QMainWindow):
@@ -99,8 +100,19 @@ class main_window(QMainWindow):
             self.tasksLayout.addRow(task)  # task.taskLayout
             layoutObject = self.tasksLayout  # .children()[-1]
             self.tasks_layout_items.append((self.tasksLayout.count(), layoutObject))
+
         else:
             QMessageBox.warning(self, "Warning!", "You must enter a task.")
+
+    def keyPressEvent(self, event):
+        textAddTask = self.lineEditAddTask.text()
+        textAddTitle = self.titleElementsObject.labelTitle.text()
+        if textAddTask != "":
+            if event.key() == Qt.Key_Return:
+                self.addTask()
+        elif textAddTitle != "" and self.titleElementsObject.buttonTitle.text() !="Change the Title":
+            if event.key() == Qt.Key_Return:
+                self.titleElementsObject.addTitle()
 
 
 if __name__ == "__main__":
