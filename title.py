@@ -7,8 +7,8 @@ from db.create_db import create_db
 
 class TitleElements(QWidget):
     def __init__(self, height):
-        self.height = height
         super().__init__()
+        self.height = height
 
         # Title
         self.title = QLabel('To Do List')
@@ -48,6 +48,7 @@ class TitleElements(QWidget):
                 self.buttonTitle.setText("Change the Title")
                 self.labelTitle.setReadOnly(True)
                 self.labelTitle.setAlignment(Qt.AlignCenter)
+
         else:
             QMessageBox.warning(self, "Warning!", "You must enter a title.")
 
