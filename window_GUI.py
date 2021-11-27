@@ -10,9 +10,10 @@ from task import TaskElements
 from db.create_db import create_db
 from db.db_controller import DbController
 from title import TitleElements
+from timer import Timer
 
 
-class main_window(QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self, width, height):
         super().__init__()
         self.width = width
@@ -22,12 +23,14 @@ class main_window(QMainWindow):
         self.tasks_object_list = []
         self.tasks_layout_items = []
 
+
         self.setWindowIcon(QIcon('Images/logo.png'))
         self.setWindowTitle("To do List")
         self.setFixedSize(self.width, self.height)
         self.setGeometry(100, 100, self.width, self.height)
 
         self.titleElementsObject = TitleElements(self.height)
+        self.timer = Timer()
 
         self.buttonAddTask = QPushButton("Add Task")
         self.lineEditAddTask = QLineEdit()
@@ -66,6 +69,7 @@ class main_window(QMainWindow):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setWidget(self.tasksWidget)
 
+
         self.addTaskLayout = QHBoxLayout()
         self.addTaskLayout.addWidget(self.buttonAddTask)
         self.addTaskLayout.addWidget(self.lineEditAddTask)
@@ -76,6 +80,7 @@ class main_window(QMainWindow):
         self.mainLayout = QVBoxLayout()
         self.mainLayout.addWidget(self.titleElementsWidget)
         self.mainLayout.addWidget(self.scrollArea)
+        self.mainLayout.addWidget(self.timer)
         self.mainLayout.addWidget(self.addTaskWidget)
 
         self.mainWidget = QWidget()
@@ -104,6 +109,7 @@ class main_window(QMainWindow):
         else:
             QMessageBox.warning(self, "Warning!", "You must enter a task.")
 
+
     def keyPressEvent(self, event):
         textAddTask = self.lineEditAddTask.text()
         textAddTitle = self.titleElementsObject.labelTitle.text()
@@ -126,7 +132,7 @@ if __name__ == "__main__":
         new_db.exec_()
 
 
-    main = main_window(500, 800)
+    main = MainWindow(500, 800)
     main.show()
 
     sys.exit(app.exec())

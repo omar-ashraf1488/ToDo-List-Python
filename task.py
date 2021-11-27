@@ -4,7 +4,6 @@ from PyQt5.QtWidgets import *
 
 # Import threading to avoid crashing the app
 import cgitb
-
 cgitb.enable(format='text')
 
 
@@ -48,3 +47,4 @@ class TaskElements(QWidget):
             lineEdit.setDisabled(True)
         else:
             lineEdit.setDisabled(False)
+
