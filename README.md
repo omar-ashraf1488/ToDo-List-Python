@@ -17,6 +17,12 @@
 
 ## <a name="about_the_project"></a>About The Project
 This project is a GUI application for To-Do List and It is connected to Database. The main aim of the project is learning Python, PyQT5 and SQLite3.
+
+<p align="center">
+  <img width="300" <img src="Images/app27.11.png"/>
+  <h3 align="center">The current Image of the Application</h3>
+</p>
+
 ### <a name="built_with"></a>Built With
 * Python 3
 * PyQT5
