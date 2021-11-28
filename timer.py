@@ -7,10 +7,11 @@ class Timer(QWidget):
 
         self.label = QLabel("Work Duration in Minutes")
         self.comboBox = QComboBox()
-        self.comboBox.addItems(["5", "10", "15", "20", "25", "30"])
+        self.comBoxItems = self.comboBox.addItems(["05:00", "10:00", "15:00", "20:00", "25:00", "30:00"])
 
         self.lcd = QLCDNumber()
-        self.lcd.display("30:00")
+        self.text = self.comboBox.currentText()
+        self.lcd.display(self.text)
         self.startButton = QPushButton("Start")
         self.stopButton = QPushButton("Stop")
         self.resetButton = QPushButton("Reset")
@@ -34,5 +35,10 @@ class Timer(QWidget):
         self.mainLayout.addWidget(self.timerWidget)
 
         self.setLayout(self.mainLayout)
-        
+
+        self.comboBox.activated.connect(self.selectWorkDuration)
+
+    def selectWorkDuration(self):
+        self.text = self.comboBox.currentText()
+        self.lcd.display(self.text)
 
