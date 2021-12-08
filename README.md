@@ -19,7 +19,7 @@
 This project is a GUI application for To-Do List and It is connected to Database. The main aim of the project is learning Python, PyQT5 and SQLite3.
 
 <p align="center">
-  <img width="300" <img src="Images/app27.11.png"/>
+  <img width="300" <img src="Images/app08.12.png"/>
   <h3 align="center">The current Image of the Application</h3>
 </p>
 
@@ -37,10 +37,13 @@ This project is a GUI application for To-Do List and It is connected to Database
 - [x] Delete a task
 - [x] Connect GUI with database
 - [x] Connect Pushbuttons (Add Task) and (Add Title) with Enter Key
-- [x] StartButton and StopButton are connected with QLCD and QTimer
-- [ ] Add countdown timer for a time specified by the user
+- [x] StartButton, StopButton and ResetButton are connected with QLCD and QTimer
+- [x] Add countdown timer for a time specified by the user
+- [ ] Change The color of the timer when it is close to zero
 - [ ] Connect Pushbutton (Add Title)  with database to change the name of the table after pressing the button.
 - [ ] Style and beautify the application
+
+
 ## <a name="license_"></a>License
 
 
