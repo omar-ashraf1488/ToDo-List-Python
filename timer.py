@@ -1,5 +1,5 @@
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLCDNumber, QPushButton, QLabel, QComboBox, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLCDNumber, QPushButton, QLabel, QComboBox, QVBoxLayout, QMessageBox
 from PyQt5.QtCore import QTimer
 
 class Timer(QWidget):
@@ -43,32 +43,47 @@ class Timer(QWidget):
         self.comboBox.activated.connect(self.selectWorkDuration)
         self.startButton.clicked.connect(self.startTimer)
         self.stopButton.clicked.connect(self.stopTimer)
+        self.resetButton.clicked.connect(self.resetTimer)
 
     def selectWorkDuration(self):
-        self.timerString = self.comboBox.currentText()
-        self.lcd.display(self.timerString)
-        self.time = self.stringTimeToInt(self.timerString)
+        global time
+        self.timeString = self.comboBox.currentText()
+        self.lcd.display(self.timeString)
+        time = self.stringTimeToInt(self.timeString)
 
     def stringTimeToInt(self, timerString):
         mm, ss = map(int, timerString.split(':'))
         return ss + 60 * mm
 
     def startTimer(self):
-        self.startButton.setEnabled(False)
-        self.timer.timeout.connect(self.timerTimeout)
-        self.time = self.stringTimeToInt(self.timerString)
-        self.timer.start(self.time)
+        global time
+        if time > 0:
+            self.startButton.setEnabled(False)
+            self.timer.timeout.connect(self.timerTimeout)
+            self.timer.start(time)
+        else:
+            QMessageBox.warning(self, "Warning!", "You must select Work Duration!")
 
     def timerTimeout(self):
-        self.time -= 1
-        if self.time == 0:
-            self.time = self.durationTime
-        self.updateLCD()
+        global time
+        time -= 1
+        if time <= 0:
+            self.stopTimer()
+            self.lcd.display('00:00')
+        else:
+            self.updateLCD()
 
     def updateLCD(self):
-        m, s = divmod(self.time, 60)
+        global time
+        m, s = divmod(time, 60)
         self.lcd.display('{:0>2}:{:0>2}'.format(m, s))
 
     def stopTimer(self):
         self.startButton.setEnabled(True)
         self.timer.stop()
+
+    def resetTimer(self):
+        self.timer.stop()
+        self.startButton.setEnabled(True)
+        self.selectWorkDuration()
+
