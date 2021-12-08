@@ -46,10 +46,6 @@ class MainWindow(QMainWindow):
     def initUI(self):
         self.get_tasks_list()
 
-        # Horizontal box layout objects
-        self.titleElementsWidget = QWidget()
-        self.titleElementsWidget.setLayout(self.titleElementsObject.titleLayout)
-
         # scroll area widget contents - layout
         self.tasksLayout = QFormLayout()
 
@@ -78,7 +74,7 @@ class MainWindow(QMainWindow):
         self.addTaskWidget.setLayout(self.addTaskLayout)
 
         self.mainLayout = QVBoxLayout()
-        self.mainLayout.addWidget(self.titleElementsWidget)
+        self.mainLayout.addWidget(self.titleElementsObject)
         self.mainLayout.addWidget(self.scrollArea)
         self.mainLayout.addWidget(self.timer)
         self.mainLayout.addWidget(self.addTaskWidget)

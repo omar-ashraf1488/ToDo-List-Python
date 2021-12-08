@@ -29,9 +29,11 @@ class TitleElements(QWidget):
         self.title_widget = QWidget()
         self.title_widget.setLayout(self.title_layout1)
 
-        self.titleLayout = QVBoxLayout()
-        self.titleLayout.addWidget(self.title)
-        self.titleLayout.addWidget(self.title_widget)
+        self.mainLayout = QVBoxLayout()
+        self.mainLayout.addWidget(self.title)
+        self.mainLayout.addWidget(self.title_widget)
+
+        self.setLayout(self.mainLayout)
 
         # Action of Button to add Title
         self.buttonTitle.clicked.connect(self.addTitle)
