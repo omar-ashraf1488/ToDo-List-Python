@@ -39,7 +39,7 @@ This project is a GUI application for To-Do List and It is connected to Database
 - [x] Connect Pushbuttons (Add Task) and (Add Title) with Enter Key
 - [x] StartButton, StopButton and ResetButton are connected with QLCD and QTimer
 - [x] Add countdown timer for a time specified by the user
-- [ ] Change the color of the QLCD when it is close to zero
+- [x] Change the color of the QLCD when it is close to zero
 - [ ] Connect Pushbutton (Add Title)  with database to change the name of the table after pressing the button.
 - [ ] Style and beautify the application
 
