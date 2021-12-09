@@ -5,12 +5,12 @@ import sys
 import os
 
 from task import TaskElements
-
+from title import TitleElements
+from timer import Timer
 
 from db.create_db import create_db
 from db.db_controller import DbController
-from title import TitleElements
-from timer import Timer
+
 
 
 class MainWindow(QMainWindow):
@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
                                            TaskElements(entry[1], self.height, self.width, entry[0], self.removeTask)))
 
         for entry in self.tasks_object_list:
-            self.tasksLayout.addRow(entry[1])  #
+            self.tasksLayout.addRow(entry[1])
             layoutObject = self.tasksLayout  # .children()[self.tasksLayout.count() - 1]
             self.tasks_layout_items.append((entry[0], layoutObject))  # entry[0] is taskID
 
@@ -104,7 +104,6 @@ class MainWindow(QMainWindow):
 
         else:
             QMessageBox.warning(self, "Warning!", "You must enter a task.")
-
 
     def keyPressEvent(self, event):
         textAddTask = self.lineEditAddTask.text()

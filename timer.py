@@ -13,6 +13,7 @@ class Timer(QWidget):
         self.comBoxItems = self.comboBox.addItems(["05:00", "10:00", "15:00", "20:00", "25:00", "30:00"])
 
         self.lcd = QLCDNumber()
+        self.lcd.setFixedSize(100,50)
         self.text = self.comboBox.currentText()
         self.lcd.display(self.text)
         self.startButton = QPushButton("Start")
@@ -49,6 +50,8 @@ class Timer(QWidget):
         global time
         self.timeString = self.comboBox.currentText()
         self.lcd.display(self.timeString)
+        self.lcd.setStyleSheet("color: black")
+
         time = self.stringTimeToInt(self.timeString)
 
     def stringTimeToInt(self, timerString):
@@ -72,6 +75,9 @@ class Timer(QWidget):
             self.lcd.display('00:00')
         else:
             self.updateLCD()
+
+        if time <= 120:
+            self.lcd.setStyleSheet("color: red")
 
     def updateLCD(self):
         global time
