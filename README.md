@@ -16,7 +16,7 @@
 </details>
 
 ## <a name="about_the_project"></a>About The Project
-This project is a GUI application for To-Do List and It is connected to Database. The main aim of the project is learning Python, PyQT5 and SQLite3.
+This project is a GUI application for To-Do List and It is connected to Database. The main aim of the project is learning Python, PyQT5, SQLite3 and Docker.
 
 <p align="center">
   <img width="300" <img src="Images/app08.12.png"/>
@@ -42,6 +42,7 @@ This project is a GUI application for To-Do List and It is connected to Database
 - [x] Change the color of the QLCD when it is close to zero
 - [ ] Connect Pushbutton (Add Title)  with database to change the name of the table after pressing the button.
 - [ ] Style and beautify the application
+- [ ] Docker Image for the Application
 
 
 ## <a name="license_"></a>License
