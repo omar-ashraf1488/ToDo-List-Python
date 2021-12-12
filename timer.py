@@ -1,6 +1,7 @@
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLCDNumber, QPushButton, QLabel, QComboBox, QVBoxLayout, QMessageBox
 from PyQt5.QtCore import QTimer
+from css import PushButtonStyle, LCDStyle
 
 class Timer(QWidget):
     def __init__(self):
@@ -14,11 +15,17 @@ class Timer(QWidget):
 
         self.lcd = QLCDNumber()
         self.lcd.setFixedSize(100,50)
+        self.lcd.setSegmentStyle(2)
+
         self.text = self.comboBox.currentText()
         self.lcd.display(self.text)
         self.startButton = QPushButton("Start")
         self.stopButton = QPushButton("Stop")
         self.resetButton = QPushButton("Reset")
+
+        self.startButton.setStyleSheet(PushButtonStyle)
+        self.stopButton.setStyleSheet(PushButtonStyle)
+        self.resetButton.setStyleSheet(PushButtonStyle)
 
         self.timerInputLayout = QHBoxLayout()
         self.timerInputLayout.addWidget(self.label)
@@ -50,7 +57,7 @@ class Timer(QWidget):
         global time
         self.timeString = self.comboBox.currentText()
         self.lcd.display(self.timeString)
-        self.lcd.setStyleSheet("color: black")
+        self.lcd.setStyleSheet(LCDStyle)
 
         time = self.stringTimeToInt(self.timeString)
 
@@ -60,16 +67,19 @@ class Timer(QWidget):
 
     def startTimer(self):
         global time
+        self.timer.start(1000)  # fires every 1000ms = 1s
         if time > 0:
             self.startButton.setEnabled(False)
+            self.resetButton.setEnabled(False)
+            self.comboBox.setEnabled(False)
             self.timer.timeout.connect(self.timerTimeout)
-            self.timer.start(time)
         else:
             QMessageBox.warning(self, "Warning!", "You must select Work Duration!")
 
     def timerTimeout(self):
         global time
         time -= 1
+
         if time <= 0:
             self.stopTimer()
             self.lcd.display('00:00')
@@ -77,7 +87,7 @@ class Timer(QWidget):
             self.updateLCD()
 
         if time <= 120:
-            self.lcd.setStyleSheet("color: red")
+            self.lcd.setStyleSheet("color: red ; background-color: rgb(0,100,0)")
 
     def updateLCD(self):
         global time
@@ -86,6 +96,8 @@ class Timer(QWidget):
 
     def stopTimer(self):
         self.startButton.setEnabled(True)
+        self.resetButton.setEnabled(True)
+        self.comboBox.setEnabled(True)
         self.timer.stop()
 
     def resetTimer(self):

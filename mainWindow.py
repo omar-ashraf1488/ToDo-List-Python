@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QCursor
 from PyQt5.QtWidgets import *
 import sys
 import os
@@ -7,11 +7,10 @@ import os
 from task import TaskElements
 from title import TitleElements
 from timer import Timer
+from css import PushButtonStyle, LineEditStyle
 
 from db.create_db import create_db
 from db.db_controller import DbController
-
-
 
 class MainWindow(QMainWindow):
     def __init__(self, width, height):
@@ -28,12 +27,17 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("To do List")
         self.setFixedSize(self.width, self.height)
         self.setGeometry(100, 100, self.width, self.height)
+        self.setStyleSheet("font-family: Arial, Helvetica, sans-serif;")
 
         self.titleElementsObject = TitleElements(self.height)
         self.timer = Timer()
 
         self.buttonAddTask = QPushButton("Add Task")
+        self.buttonAddTask.setStyleSheet(PushButtonStyle)
+        self.buttonAddTask.setCursor(QCursor(Qt.PointingHandCursor))
+
         self.lineEditAddTask = QLineEdit()
+        self.lineEditAddTask.setStyleSheet(LineEditStyle)
 
         self.buttonAddTask.clicked.connect(self.addTask)
 
