@@ -3,6 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 from db.create_db import create_db
+from css import PushButtonStyle, LineEditStyle
 
 
 class TitleElements(QWidget):
@@ -15,11 +16,14 @@ class TitleElements(QWidget):
         self.labelTitle = QLineEdit()
         self.buttonTitle = QPushButton("Add Title")
 
+        self.labelTitle.setStyleSheet(LineEditStyle)
+        self.buttonTitle.setStyleSheet(PushButtonStyle)
+        self.buttonTitle.setCursor(QCursor(Qt.PointingHandCursor))
+
         self.title.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
-        self.title.setFont(QFont("Arial"))
         self.labelTitle.setPlaceholderText("Title")
         self.title.setStyleSheet(
-            'font-size:{0}px; font-weight:bold; text-align: center; color:black; border-style:none;'.format(
+            'font-size:{0}px; font-weight:bold; color:black;'.format(
                 int(height / 12)))
 
         self.title_layout1 = QHBoxLayout()

@@ -1,4 +1,7 @@
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import *
+from css import PushButtonStyle, LineEditStyle
 
 # from window_GUI import main_window
 
@@ -20,7 +23,31 @@ class TaskElements(QWidget):
         self.labelTask = QLineEdit()
         self.checkBoxTask = QCheckBox()
         self.deleteTaskButton = QPushButton("X")
+
+        self.labelTask.setStyleSheet(LineEditStyle +
+                                     """QLineEdit{
+                                     background-color: none;
+                                     border: none;
+                                     border-bottom: 1px solid black;
+                                     border-radius: none
+                                     }
+                                     """
+                                     )
+
         self.deleteTaskButton.setFixedSize(int(self.width / 20), int(self.height / 25))
+        self.deleteTaskButton.setStyleSheet(PushButtonStyle +
+                                            """QPushButton{
+                                            padding: 2px 20px;
+                                            border: none;
+                                            background-color: none;
+                                            font-weight: bold;
+                                            }
+                                            """
+                                            """QPushButton::hover{
+                                            background-color: #f44336;
+                                            }"""
+                                            )
+        self.deleteTaskButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.taskLayout = QHBoxLayout()
         self.taskLayout.addWidget(self.checkBoxTask)
