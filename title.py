@@ -2,17 +2,16 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-from db.create_db import create_db
 from css import PushButtonStyle, LineEditStyle
 
 
 class TitleElements(QWidget):
-    def __init__(self, height):
+    def __init__(self, height, titleList):
         super().__init__()
         self.height = height
+        self.titleList = titleList
 
         # Title
-        self.title = QLabel('To Do List')
         self.labelTitle = QLineEdit()
         self.buttonTitle = QPushButton("Add Title")
 
@@ -20,11 +19,9 @@ class TitleElements(QWidget):
         self.buttonTitle.setStyleSheet(PushButtonStyle)
         self.buttonTitle.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.title.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+
         self.labelTitle.setPlaceholderText("Title")
-        self.title.setStyleSheet(
-            'font-size:{0}px; font-weight:bold; color:black;'.format(
-                int(height / 12)))
+
 
         self.title_layout1 = QHBoxLayout()
         self.title_layout1.addWidget(self.labelTitle)
@@ -34,7 +31,6 @@ class TitleElements(QWidget):
         self.title_widget.setLayout(self.title_layout1)
 
         self.mainLayout = QVBoxLayout()
-        self.mainLayout.addWidget(self.title)
         self.mainLayout.addWidget(self.title_widget)
 
         self.setLayout(self.mainLayout)
@@ -49,6 +45,7 @@ class TitleElements(QWidget):
                 self.buttonTitle.setText("Add Title")
                 self.labelTitle.setReadOnly(False)
                 self.labelTitle.setAlignment(Qt.AlignLeft)
+                self.titleList = text
 
             elif self.buttonTitle.text() == "Add Title":
                 self.buttonTitle.setText("Change the Title")

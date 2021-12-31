@@ -34,12 +34,14 @@ class Timer(QWidget):
         self.timerInputWidget.setLayout(self.timerInputLayout)
 
         self.timerLayout = QHBoxLayout()
+        #self.timerLayout.setSpacing(0)
         self.timerLayout.addWidget(self.lcd)
         self.timerLayout.addWidget(self.startButton)
         self.timerLayout.addWidget(self.stopButton)
         self.timerLayout.addWidget(self.resetButton)
         self.timerWidget = QWidget()
         self.timerWidget.setLayout(self.timerLayout)
+
 
         self.mainLayout = QVBoxLayout()
         self.mainLayout.addWidget(self.timerInputWidget)
