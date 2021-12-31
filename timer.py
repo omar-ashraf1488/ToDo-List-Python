@@ -1,6 +1,7 @@
 from PyQt5 import QtCore
+from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLCDNumber, QPushButton, QLabel, QComboBox, QVBoxLayout, QMessageBox
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, Qt
 from css import PushButtonStyle, LCDStyle
 
 class Timer(QWidget):
@@ -26,6 +27,9 @@ class Timer(QWidget):
         self.startButton.setStyleSheet(PushButtonStyle)
         self.stopButton.setStyleSheet(PushButtonStyle)
         self.resetButton.setStyleSheet(PushButtonStyle)
+        self.startButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.stopButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.resetButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.timerInputLayout = QHBoxLayout()
         self.timerInputLayout.addWidget(self.label)

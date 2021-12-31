@@ -10,18 +10,18 @@ from title import TitleElements, QLineEdit
 
 
 class ToDoList(QWidget):
-    def __init__(self, width, height, titleList=None):
+    def __init__(self, width, height):
         super().__init__()
 
         self.height = height
         self.width = width
-        self.titleList = titleList
+
         self.dbController = DbController("to_do.db")
         self.tasksIdDescriptionList = []
         self.tasks_object_list = []
         self.tasks_layout_items = []
 
-        self.titleElementsObject = TitleElements(self.height, self.titleList)
+        self.titleElementsObject = TitleElements(self.height)
         self.timer = Timer()
 
         self.buttonAddTask = QPushButton("Add Task")
@@ -70,7 +70,7 @@ class ToDoList(QWidget):
         self.addTaskWidget.setLayout(self.addTaskLayout)
 
         self.mainLayout = QVBoxLayout()
-        self.mainLayout.addWidget(self.titleElementsObject)
+        #self.mainLayout.addWidget(self.titleElementsObject)
         self.mainLayout.addWidget(self.scrollArea)
         self.mainLayout.addWidget(self.timer)
         self.mainLayout.addWidget(self.addTaskWidget)
@@ -82,7 +82,7 @@ class ToDoList(QWidget):
     def removeTask(self, task_id):
         for layout_item in self.tasks_layout_items:
             if layout_item[0] == task_id:
-                self.tasksLayout.removeRow(layout_item[1])  # layout_item[1] is the layoutObject
+                self.tasksLayout.removeRow(layout_item[1])
                 self.dbController.delete_task_by_id(task_id)
 
     def addTask(self):
@@ -93,8 +93,8 @@ class ToDoList(QWidget):
             self.lineEditAddTask.clear()
 
             task = TaskElements(text, self.height, self.width, self.tasksLayout.count() + 1, self.removeTask)
-            self.tasksLayout.addRow(task)  # task.taskLayout
-            layoutObject = self.tasksLayout  # .children()[-1]
+            self.tasksLayout.addRow(task)
+            layoutObject = self.tasksLayout
             self.tasks_layout_items.append((self.tasksLayout.count(), layoutObject))
 
         else:
