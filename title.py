@@ -6,10 +6,9 @@ from css import PushButtonStyle, LineEditStyle
 
 
 class TitleElements(QWidget):
-    def __init__(self, height, titleList):
+    def __init__(self, height):
         super().__init__()
         self.height = height
-        self.titleList = titleList
 
         # Title
         self.labelTitle = QLineEdit()
@@ -18,7 +17,6 @@ class TitleElements(QWidget):
         self.labelTitle.setStyleSheet(LineEditStyle)
         self.buttonTitle.setStyleSheet(PushButtonStyle)
         self.buttonTitle.setCursor(QCursor(Qt.PointingHandCursor))
-
 
         self.labelTitle.setPlaceholderText("Title")
 
@@ -45,7 +43,6 @@ class TitleElements(QWidget):
                 self.buttonTitle.setText("Add Title")
                 self.labelTitle.setReadOnly(False)
                 self.labelTitle.setAlignment(Qt.AlignLeft)
-                self.titleList = text
 
             elif self.buttonTitle.text() == "Add Title":
                 self.buttonTitle.setText("Change the Title")
