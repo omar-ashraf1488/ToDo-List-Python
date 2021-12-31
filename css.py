@@ -8,7 +8,7 @@ LineEditStyle = ("""QLineEdit{border-radius: 2px;
 PushButtonStyle = ("""QPushButton{
                       border-radius: 2px;
                       border: 1px solid black;
-                      padding: 5px 20px;
+                      padding: 5px 5px;
                       background-color: White;
                       color: black;
                       font-family: Arial, Helvetica, sans-serif;
