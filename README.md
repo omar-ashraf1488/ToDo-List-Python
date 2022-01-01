@@ -19,7 +19,7 @@
 This project is a GUI application for To-Do List and It is connected to Database. The main aim of the project is learning Python, PyQT5, SQLite3 and Docker.
 
 <p align="center">
-  <img width="300" <img src="Images/app12.12.png"/>
+  <img width="300" <img src="Images/app21.12.gif"/>
   <h3 align="center">The current Image of the Application</h3>
 </p>
 
