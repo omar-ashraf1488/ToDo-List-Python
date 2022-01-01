@@ -1,27 +1,29 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor
-from PyQt5.QtWidgets import QWidget, QPushButton, QFormLayout, QScrollArea, QHBoxLayout, QVBoxLayout, QMessageBox
+from PyQt5.QtWidgets import QWidget, QPushButton, QFormLayout, QScrollArea, QHBoxLayout, QVBoxLayout, QMessageBox, \
+    QLineEdit
 
 from css import PushButtonStyle, LineEditStyle
 from db.db_controller import DbController
 from task import TaskElements
 from timer import Timer
-from title import TitleElements, QLineEdit
+from title import TitleElements
 
 
 class ToDoList(QWidget):
-    def __init__(self, width, height):
+    def __init__(self, width, height, list_id=None):
         super().__init__()
 
         self.height = height
         self.width = width
+        self.list_id = list_id
 
         self.dbController = DbController("to_do.db")
         self.tasksIdDescriptionList = []
         self.tasks_object_list = []
         self.tasks_layout_items = []
 
-        self.titleElementsObject = TitleElements(self.height)
+        self.titleElements = TitleElements()
         self.timer = Timer()
 
         self.buttonAddTask = QPushButton("Add Task")
@@ -51,7 +53,7 @@ class ToDoList(QWidget):
 
         for entry in self.tasks_object_list:
             self.tasksLayout.addRow(entry[1])
-            layoutObject = self.tasksLayout  # .children()[self.tasksLayout.count() - 1]
+            layoutObject = self.tasksLayout
             self.tasks_layout_items.append((entry[0], layoutObject))  # entry[0] is taskID
 
         self.tasksWidget = QWidget()
@@ -61,7 +63,6 @@ class ToDoList(QWidget):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setWidget(self.tasksWidget)
 
-
         self.addTaskLayout = QHBoxLayout()
         self.addTaskLayout.addWidget(self.buttonAddTask)
         self.addTaskLayout.addWidget(self.lineEditAddTask)
@@ -70,14 +71,12 @@ class ToDoList(QWidget):
         self.addTaskWidget.setLayout(self.addTaskLayout)
 
         self.mainLayout = QVBoxLayout()
-        #self.mainLayout.addWidget(self.titleElementsObject)
+        #self.mainLayout.addWidget(self.titleElements)
         self.mainLayout.addWidget(self.scrollArea)
         self.mainLayout.addWidget(self.timer)
         self.mainLayout.addWidget(self.addTaskWidget)
 
-
         self.setLayout(self.mainLayout)
-
 
     def removeTask(self, task_id):
         for layout_item in self.tasks_layout_items:
@@ -102,10 +101,10 @@ class ToDoList(QWidget):
 
     def keyPressEvent(self, event):
         textAddTask = self.lineEditAddTask.text()
-        textAddTitle = self.titleElementsObject.labelTitle.text()
+        textAddTitle = self.titleElements.labelTitle.text()
         if textAddTask != "":
             if event.key() == Qt.Key_Return:
                 self.addTask()
-        elif textAddTitle != "" and self.titleElementsObject.buttonTitle.text() !="Change the Title":
+        elif textAddTitle != "" and self.titleElements.buttonTitle.text() != "Change the Title":
             if event.key() == Qt.Key_Return:
-                self.titleElementsObject.addTitle()
+                self.titleElements.addTitle()

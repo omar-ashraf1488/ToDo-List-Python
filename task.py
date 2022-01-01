@@ -1,9 +1,8 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import *
-from css import PushButtonStyle, LineEditStyle
 
-# from window_GUI import main_window
+from css import PushButtonStyle, LineEditStyle
 
 # Import threading to avoid crashing the app
 import cgitb
