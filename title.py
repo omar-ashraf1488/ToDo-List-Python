@@ -4,15 +4,13 @@ from PyQt5.QtCore import *
 
 from css import PushButtonStyle, LineEditStyle
 
-
 class TitleElements(QWidget):
-    def __init__(self, height):
+    def __init__(self):
         super().__init__()
-        self.height = height
 
         # Title
         self.labelTitle = QLineEdit()
-        self.buttonTitle = QPushButton("Add Title")
+        self.buttonTitle = QPushButton("Add List")
 
         self.labelTitle.setStyleSheet(LineEditStyle)
         self.buttonTitle.setStyleSheet(PushButtonStyle)
@@ -35,10 +33,12 @@ class TitleElements(QWidget):
 
         # Action of Button to add Title
         self.buttonTitle.clicked.connect(self.addTitle)
+        print(self.buttonTitle.clicked)
 
     def addTitle(self):
         text = self.labelTitle.text()
         if text != "":
+            #self.tabs.setTabText(0, text)  # Bug!
             if self.buttonTitle.text() == "Change the Title":
                 self.buttonTitle.setText("Add Title")
                 self.labelTitle.setReadOnly(False)
@@ -48,12 +48,8 @@ class TitleElements(QWidget):
                 self.buttonTitle.setText("Change the Title")
                 self.labelTitle.setReadOnly(True)
                 self.labelTitle.setAlignment(Qt.AlignCenter)
-
         else:
             QMessageBox.warning(self, "Warning!", "You must enter a title.")
-
-
-
 
 
 

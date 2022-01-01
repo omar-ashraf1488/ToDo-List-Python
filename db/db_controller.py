@@ -24,7 +24,7 @@ class DbController:
         return results
 
     def add_task(self, description, table_id=1):
-        add_task_sql = "INSERT INTO Tasks (Description, ProjectsID) VALUES (?,?)"
+        add_task_sql = "INSERT INTO Tasks (Description, ProjectID) VALUES (?,?)"
         self.query(add_task_sql, (description, table_id, ))
 
     def get_all_tasks(self):
