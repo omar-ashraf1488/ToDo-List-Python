@@ -19,7 +19,7 @@
 This project is a GUI application for To-Do List and It is connected to Database. The main aim of the project is learning Python, PyQT5, SQLite3 and Docker.
 
 <p align="center">
-  <img width="300" <img src="Images/app21.12.gif"/>
+  <img width="300" <img src="Images/app01.01.22.gif"/>
   <h3 align="center">The current Image of the Application</h3>
 </p>
 
@@ -33,8 +33,8 @@ This project is a GUI application for To-Do List and It is connected to Database
 ### <a name="installation_"></a>Installation
 ## <a name="roadmap_"></a>Roadmap
 - [x] GUI
-- [x] Add a task
-- [x] Delete a task
+- [x] Add and delete a task 
+- [x] Add and delete a list of tasks
 - [x] Connect GUI with database
 - [x] Connect Pushbuttons (Add Task) and (Add Title) with Enter Key
 - [x] StartButton, StopButton and ResetButton are connected with QLCD and QTimer
