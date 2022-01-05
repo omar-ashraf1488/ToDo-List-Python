@@ -28,6 +28,7 @@ This project is a GUI application for To-Do List and It is connected to Database
 * PyQT5
 * SQLite3
 * IDE: Pycharm
+
 ## <a name="getting_started"></a>Getting Started
 ### <a name="prerequisites_"></a>Prerequisites
 ### <a name="installation_"></a>Installation
@@ -40,6 +41,7 @@ This project is a GUI application for To-Do List and It is connected to Database
 - [x] StartButton, StopButton and ResetButton are connected with QLCD and QTimer
 - [x] Add countdown timer for a time specified by the user
 - [x] Change the color of the QLCD when it is close to zero
+- [x] Connect Tasks table with projects table in db
 - [ ] Connect Pushbutton (Add Title)  with database to change the name of the table after pressing the button.
 - [ ] Style and beautify the application
 - [ ] Docker Image for the Application
