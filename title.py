@@ -33,7 +33,7 @@ class TitleElements(QWidget):
 
         # Action of Button to add Title
         self.buttonTitle.clicked.connect(self.addTitle)
-        print(self.buttonTitle.clicked)
+
 
     def addTitle(self):
         text = self.labelTitle.text()
