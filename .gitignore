@@ -4,4 +4,7 @@
 .idea/
 venv/
 to_do.db
-__pycache__
+__pycache__/
+db/__pycache__/
+
+
