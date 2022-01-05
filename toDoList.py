@@ -10,10 +10,10 @@ from timer import Timer
 from title import TitleElements
 
 
-class ToDoList(QWidget):
-    def __init__(self, width, height, list_id=None):
-        super().__init__()
 
+class ToDoList(QWidget):
+    def __init__(self, width, height, list_id):
+        super().__init__()
         self.height = height
         self.width = width
         self.list_id = list_id
@@ -37,12 +37,12 @@ class ToDoList(QWidget):
 
         self.initUI()  # Initialize the UI
 
-    def get_tasks_list(self):
-        for entry in self.dbController.get_all_tasks():
+    def get_tasks_list(self, list_id):
+        for entry in self.dbController.get_all_tasks(list_id):
             self.tasksIdDescriptionList.append(entry)
 
     def initUI(self):
-        self.get_tasks_list()
+        self.get_tasks_list(self.list_id)
 
         # scroll area widget contents - layout
         self.tasksLayout = QFormLayout()
@@ -87,8 +87,8 @@ class ToDoList(QWidget):
     def addTask(self):
         text = self.lineEditAddTask.text()
         if text != "":
-            self.dbController.add_task(text)
-            self.get_tasks_list()
+            self.dbController.add_task(text, self.list_id)
+            self.get_tasks_list(self.list_id)
             self.lineEditAddTask.clear()
 
             task = TaskElements(text, self.height, self.width, self.tasksLayout.count() + 1, self.removeTask)
@@ -108,3 +108,4 @@ class ToDoList(QWidget):
         elif textAddTitle != "" and self.titleElements.buttonTitle.text() != "Change the Title":
             if event.key() == Qt.Key_Return:
                 self.titleElements.addTitle()
+
