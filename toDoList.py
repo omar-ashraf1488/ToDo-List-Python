@@ -14,6 +14,7 @@ from title import TitleElements
 class ToDoList(QWidget):
     def __init__(self, width, height, list_id):
         super().__init__()
+        self.titleElements = TitleElements()
         self.height = height
         self.width = width
         self.list_id = list_id
@@ -23,7 +24,7 @@ class ToDoList(QWidget):
         self.tasks_object_list = []
         self.tasks_layout_items = []
 
-        self.titleElements = TitleElements()
+
         self.timer = Timer()
 
         self.buttonAddTask = QPushButton("Add Task")
@@ -71,7 +72,7 @@ class ToDoList(QWidget):
         self.addTaskWidget.setLayout(self.addTaskLayout)
 
         self.mainLayout = QVBoxLayout()
-        #self.mainLayout.addWidget(self.titleElements)
+        self.mainLayout.addWidget(self.titleElements)
         self.mainLayout.addWidget(self.scrollArea)
         self.mainLayout.addWidget(self.timer)
         self.mainLayout.addWidget(self.addTaskWidget)

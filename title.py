@@ -48,6 +48,7 @@ class TitleElements(QWidget):
                 self.buttonTitle.setText("Change the Title")
                 self.labelTitle.setReadOnly(True)
                 self.labelTitle.setAlignment(Qt.AlignCenter)
+            return  text
         else:
             QMessageBox.warning(self, "Warning!", "You must enter a title.")
 
