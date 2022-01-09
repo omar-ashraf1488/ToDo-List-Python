@@ -48,5 +48,4 @@ This project is a GUI application for To-Do List and It is connected to Database
 
 
 ## <a name="license_"></a>License
-
-
+MIT License
